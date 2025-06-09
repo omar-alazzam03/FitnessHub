@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Hub - Omar Al-Azzam</title>
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg p-6 space-y-6">
+      <h1 class="text-2xl font-bold text-blue-600">🏋️ Fitness Hub</h1>
+      <ul class="space-y-4">
+        <li><a href="#home" class="block text-blue-500 hover:underline">Dashboard</a></li>
+        <li><a href="#workouts" class="block hover:text-blue-600">Workouts</a></li>
+        <li><a href="#meals" class="block hover:text-blue-600">Meals</a></li>
+        <li><a href="#water" class="block hover:text-blue-600">Water</a></li>
+        <li><a href="#goals" class="block hover:text-blue-600">Goals</a></li>
+        <li><a href="#settings" class="block hover:text-blue-600">Settings</a></li>
+      </ul>
+      <p class="text-xs text-gray-500 mt-10">Student: Omar Al-Azzam<br>ID: 202120388</p>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 space-y-12">
+      <!-- Dashboard -->
+      <section id="home">
+        <h2 class="text-3xl font-semibold mb-4">Dashboard</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="text-xl font-medium">Today's Workouts</h3>
+            <p id="workout-count" class="text-2xl font-bold mt-2">0</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="text-xl font-medium">Meals Logged</h3>
+            <p id="meal-count" class="text-2xl font-bold mt-2">0</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workouts -->
+      <section id="workouts">
+        <h2 class="text-2xl font-semibold mb-2">Workouts</h2>
+        <div class="bg-white p-4 rounded shadow">
+          <input type="text" id="workout-input" placeholder="Add workout..." class="border p-2 w-full mb-4 rounded" />
+          <button onclick="addWorkout()" class="bg-blue-600 text-white px-4 py-2 rounded">Add Workout</button>
+          <ul id="workout-list" class="list-disc list-inside mt-4"></ul>
+        </div>
+      </section>
+
+      <!-- Meals -->
+      <section id="meals">
+        <h2 class="text-2xl font-semibold mb-2">Meals</h2>
+        <div class="bg-white p-4 rounded shadow">
+          <input type="text" id="meal-input" placeholder="Log meal..." class="border p-2 w-full mb-4 rounded" />
+          <button onclick="addMeal()" class="bg-green-600 text-white px-4 py-2 rounded">Log Meal</button>
+          <ul id="meal-list" class="list-disc list-inside mt-4"></ul>
+        </div>
+      </section>
+
+      <!-- Water -->
+      <section id="water">
+        <h2 class="text-2xl font-semibold mb-2">Water Tracker</h2>
+        <div class="bg-white p-4 rounded shadow text-center">
+          <button onclick="addWater()" class="bg-blue-400 text-white px-6 py-2 rounded">Add Glass</button>
+          <p id="water-count" class="mt-4 text-lg">Water glasses today: 0</p>
+        </div>
+      </section>
+
+      <!-- Goals -->
+      <section id="goals">
+        <h2 class="text-2xl font-semibold mb-2">Goals</h2>
+        <div class="bg-white p-4 rounded shadow">
+          <input type="text" id="goal-input" placeholder="Set a goal..." class="border p-2 w-full mb-4 rounded" />
+          <button onclick="addGoal()" class="bg-purple-600 text-white px-4 py-2 rounded">Add Goal</button>
+          <ul id="goal-list" class="list-disc list-inside mt-4"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let water = 0, workouts = 0, meals = 0;
+
+    function addWorkout() {
+      const val = document.getElementById('workout-input').value;
+      if (val) {
+        const li = document.createElement('li');
+        li.textContent = val;
+        document.getElementById('workout-list').appendChild(li);
+        document.getElementById('workout-input').value = '';
+        document.getElementById('workout-count').textContent = ++workouts;
+      }
+    }
+
+    function addMeal() {
+      const val = document.getElementById('meal-input').value;
+      if (val) {
+        const li = document.createElement('li');
+        li.textContent = val;
+        document.getElementById('meal-list').appendChild(li);
+        document.getElementById('meal-input').value = '';
+        document.getElementById('meal-count').textContent = ++meals;
+      }
+    }
+
+    function addWater() {
+      document.getElementById('water-count').textContent = `Water glasses today: ${++water}`;
+    }
+
+    function addGoal() {
+      const val = document.getElementById('goal-input').value;
+      if (val) {
+        const li = document.createElement('li');
+        li.textContent = val;
+        document.getElementById('goal-list').appendChild(li);
+        document.getElementById('goal-input').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
